@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #Create a file in a specifi path and add some conent into that file.
 echo "Your cuurent directory is "
 pwd
