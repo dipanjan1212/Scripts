@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Check Website Availability Script
+# Usage: ./check_website.sh http://example.com
+
+WEBSITE_URL=$1
+
+if [ -z "$WEBSITE_URL" ]; then
+    echo "Usage: $0 http://example.com"
+    exit 1
+fi
+
+STATUS_CODE=$(curl -o /dev/null -s -w "%{http_code}\n" "$WEBSITE_URL")
+
+if [ "$STATUS_CODE" -eq 200 ]; then
+    echo "Website $WEBSITE_URL is available."
+else
+    echo "Website $WEBSITE_URL is not available. Status code: $STATUS_CODE"
+fi
