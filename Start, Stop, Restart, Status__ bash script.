@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Function to display menu
+display_menu() {
+    echo "Choose an option:"
+    echo "1. Start a website"
+    echo "2. Stop a website"
+    echo "3. Restart a website"
+    echo "4. View status of all websites"
+    echo "5. Exit"
+}
+
+# Function to start a website
+start_website() {
+    echo "Enter the name of the website:"
+    read website_name
+    sudo systemctl start apache2  # Replace 'apache2' with the appropriate service name for your web server
+    echo "Website $website_name started successfully."
+}
+
+# Function to stop a website
+stop_website() {
+    echo "Enter the name of the website:"
+    read website_name
+    sudo systemctl stop apache2  # Replace 'apache2' with the appropriate service name for your web server
+    echo "Website $website_name stopped successfully."
+}
+
+# Function to restart a website
+restart_website() {
+    echo "Enter the name of the website:"
+    read website_name
+    sudo systemctl restart apache2  # Replace 'apache2' with the appropriate service name for your web server
+    echo "Website $website_name restarted successfully."
+}
+
+# Function to view status of all websites
+view_website_status() {
+    sudo systemctl status apache2  # Replace 'apache2' with the appropriate service name for your web server
+}
+
+# Main loop
+while true; do
+    display_menu
+    read -p "Enter your choice: " choice
+    case $choice in
+        1) start_website ;;
+        2) stop_website ;;
+        3) restart_website ;;
+        4) view_website_status ;;
+        5) echo "Exiting..."; break ;;
+        *) echo "Invalid option. Please choose again." ;;
+    esac
+done
